@@ -1,0 +1,10 @@
+# Never upload: lecture audio (448 MB, served from Supabase Storage), local
+# secrets and env files, local learner data, build output, and the spec zip.
+sample-duroos-audios
+.env
+.env.*
+!.env.example
+.lisanflow
+.next
+node_modules
+docs/*.zip

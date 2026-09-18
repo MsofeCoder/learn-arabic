@@ -44,3 +44,8 @@ next-env.d.ts
 
 # Lecture recordings: served from Supabase Storage in production, never committed
 sample-duroos-audios/
+
+.vercel
+.vercel.stale-link
+
+.env*
