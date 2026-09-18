@@ -1,26 +1,104 @@
 @import "tailwindcss";
 
+/*
+ * LisanFlow design tokens (docs/spec/03-DESIGN-SYSTEM.md).
+ * Calm, scholarly, premium: emerald reserved for action and progress, generous
+ * space, one restrained elevation level, and Arabic treated as content.
+ */
+
+@theme {
+  --color-sand-50: #fbfcfc;
+  --color-sand-100: #f8f9fa;
+  --color-sand-200: #f1f3f4;
+
+  --color-ink-400: #9aa4b2;
+  --color-ink-500: #6b7280;
+  --color-ink-600: #4b5563;
+  --color-ink-700: #374151;
+  --color-ink-900: #1f2937;
+
+  --color-line: #e7eaee;
+  --color-line-strong: #d7dce3;
+
+  --color-emerald-soft: #ecfdf5;
+  --color-emerald-muted: #a7f3d0;
+  --color-brand: #10b981;
+  --color-brand-strong: #059669;
+  --color-brand-deep: #047857;
+
+  --color-amber-soft: #fffbeb;
+  --color-amber-line: #fde68a;
+  --color-amber-ink: #92400e;
+
+  --color-rose-soft: #fff1f2;
+  --color-rose-line: #fecdd3;
+  --color-rose-ink: #9f1239;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: var(--font-noto-arabic), "Noto Sans Arabic", "Segoe UI",
+    sans-serif;
+
+  --radius-card: 16px;
+
+  --shadow-card: 0 1px 2px rgb(16 24 40 / 0.04), 0 8px 24px -12px rgb(16 24 40 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(16 24 40 / 0.05), 0 16px 32px -16px rgb(16 24 40 / 0.18);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-sand-100);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Bottom navigation is fixed on mobile; keep content clear of it. */
+  min-height: 100dvh;
+}
+
+/* Arabic is content, not decoration: its own face, size and breathing room. */
+.arabic {
+  font-family: var(--font-arabic);
+  line-height: 1.9;
+  letter-spacing: 0;
+  /* Never let Arabic inherit a Latin-oriented word-break. */
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.arabic-display {
+  font-family: var(--font-arabic);
+  line-height: 1.75;
+  font-weight: 600;
+}
+
+/* Visible, consistent focus for keyboard users across every interactive surface. */
+:focus-visible {
+  outline: 2px solid var(--color-brand-strong);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* A single restrained geometric motif for the auth/landing surface. */
+.geometry-field {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgb(16 185 129 / 0.16) 1px, transparent 0);
+  background-size: 22px 22px;
 }
